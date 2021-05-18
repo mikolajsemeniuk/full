@@ -1,18 +1,20 @@
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+using System.ComponentModel.DataAnnotations;
 
-namespace Catalog.API.Entities
+namespace Catalog.API.Models
 {
-    public class Product
+    public class ProductInput
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Category { get; set; }
+        [Required]
         public string Summary { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string ImageFile { get; set; }
+        [Required]
         public decimal Price { get; set; }
     }
 }
