@@ -1,9 +1,10 @@
 # full
 some desc over here
 
+## Part I
 ```sh
 dotnet new sln -n main
-dotnet new webapi -n Services/Catalog/Catalog.API
+dotnet new webapi -o Services/Catalog/Catalog.API
 dotnet sln main.sln add Services/Catalog/Catalog.API
 
 CMD + P
@@ -15,6 +16,21 @@ docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 
 ```
 
+## Part II
+```sh
+dotnet new webapi -o Services/Basket/Basket.API
+dotnet sln main.sln add Services/Basket/Basket.API
+
+docker run -d -p 6379:6379 --name redis1 redis
+```
+### Redis commands
+* KEYS *
+* get `key`
+* HGETALL `key`
+
+
+
+### Extras
 `docker-compose`
 ```yml
 # Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP .NET Core service.
