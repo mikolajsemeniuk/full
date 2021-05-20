@@ -10,18 +10,41 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+
+  basketdb:
+    container_name: basketdb
+    restart: always
+    ports:
+      - "6379:6379"
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8080:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
       
   catalogapi:
-    image: catalogapi
-    build:
-      context: .
-      dockerfile: Services/Catalog/Catalog.API/Dockerfile
-    ports:
-      - "8000:80"
+    container_name: catalogapi
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "MongoDbSettings:ConnectionString=mongodb://catalogdb:27017"
-    depends_on: 
+    depends_on:
       - catalogdb
-    volumes:
-      - ~/.vsdbg:/remote_debugger:rw
+    ports:
+      - "8000:80"
+
+  basketapi:
+    container_name: basketapi
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "CacheSettings:ConnectionString=basketdb:6379"
+    depends_on:
+      - basketdb
+    ports:
+      - "8001:80"

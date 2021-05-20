@@ -13,7 +13,7 @@ Add docker file to workspace...
 docker-compose down
 docker-compose build
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
-
+docker-compose exec <container_name> sh
 ```
 
 ## Part II
@@ -24,6 +24,7 @@ dotnet sln main.sln add Services/Basket/Basket.API
 docker run -d -p 6379:6379 --name redis1 redis
 ```
 ### Redis commands
+* redis-cli
 * KEYS *
 * get `key`
 * HGETALL `key`
