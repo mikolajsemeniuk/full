@@ -14,6 +14,9 @@ docker-compose down
 docker-compose build
 docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
 docker-compose exec <container_name> sh
+
+docker system prune
+docker inspect discountdb #| grep IPAddress 
 ```
 
 ## Part II
