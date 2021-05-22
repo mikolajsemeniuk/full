@@ -33,6 +33,15 @@ docker run -d -p 6379:6379 --name redis1 redis
 * HGETALL `key`
 
 
+## Part IV
+```sh
+dotnet new grpc -o Services/Discount/Discount.GRPC
+dotnet restore
+dotnet sln main.sln add Services/Discount/Discount.GRPC
+```
+
+### Useful links
+* [run grpc on mac os x](https://docs.microsoft.com/aspnet/core/grpc/troubleshoot?view=aspnetcore-3.0&branch=master#unable-to-start-aspnet-core-grpc-app-on-macos)
 
 ### Extras
 `docker-compose`
